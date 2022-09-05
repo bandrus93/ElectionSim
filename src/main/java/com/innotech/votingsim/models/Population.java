@@ -1,12 +1,12 @@
 package com.innotech.votingsim.models;
 
 public class Population {
-	private Long totalPop;
-	private Long radLeft;
-	private Long modLeft;
-	private Long center;
-	private Long modRight;
-	private Long radRight;
+	private Long totalPop = 0L;
+	private Long radLeft = 0L;
+	private Long modLeft = 0L;
+	private Long center = 0L;
+	private Long modRight = 0L;
+	private Long radRight = 0L;
 	
 	public Population() {
 		
@@ -59,11 +59,19 @@ public class Population {
 	public void setRadRight(Double segment) {
 		this.radRight = Math.round(totalPop * segment);
 	}
-	
-	public boolean checkSum() {
-		if(this.totalPop == null || this.radLeft == null || this.modLeft == null || this.center == null || this.modRight == null || this.radRight == null) {
-			return false;
-		}
-		return true;
+
+	public boolean checkNull() {
+		if (totalPop == 0) {
+			return true;
+		} else if (radLeft == 0) {
+			return true;
+		} else if (modLeft == 0) {
+			return true;
+		} else if (center == 0) {
+			return true;
+		} else if (modRight == 0) {
+			return true;
+		} else return radRight == 0;
 	}
+
 }

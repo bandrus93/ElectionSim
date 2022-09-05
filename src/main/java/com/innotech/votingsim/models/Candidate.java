@@ -1,32 +1,18 @@
 package com.innotech.votingsim.models;
 
-import java.util.ArrayList;
-
 public class Candidate {
-	public static ArrayList<Candidate> candidates = new ArrayList<>();
-	private String name;
-	private String alignment;
-	private Integer energy;
-	private Integer intelligence;
-	private Integer wit;
-	private Integer levelHeadedness;
-	private Integer speakAbility;
+	private String name = "";
+	private String alignment = "";
+	private Integer energy = 0;
+	private Integer intelligence = 0;
+	private Integer wit = 0;
+	private Integer levelHeadedness = 0;
+	private Integer speakAbility = 0;
 	private Double swayScore;
 	private Long totalVotes = 0L;
 	
 	public Candidate() {
 		
-	}
-	
-	public Candidate(Candidate clone) {
-		this.name = clone.getName();
-		this.alignment = clone.getAlignment();
-		this.energy = clone.getEnergy();
-		this.intelligence = clone.getIntelligence();
-		this.wit = clone.getWit();
-		this.levelHeadedness = clone.getLevelHeadedness();
-		this.speakAbility = clone.getSpeakAbility();
-		this.swayScore = clone.getSwayScore();
 	}
 
 	public String getName() {
@@ -39,26 +25,6 @@ public class Candidate {
 
 	public void setAlignment(String alignment) {
 		this.alignment = alignment;
-	}
-
-	public Integer getEnergy() {
-		return energy;
-	}
-
-	public Integer getIntelligence() {
-		return intelligence;
-	}
-
-	public Integer getWit() {
-		return wit;
-	}
-
-	public Integer getLevelHeadedness() {
-		return levelHeadedness;
-	}
-
-	public Integer getSpeakAbility() {
-		return speakAbility;
 	}
 	
 	public Double getSwayScore() {
@@ -79,10 +45,6 @@ public class Candidate {
 
 	public void countVotes(Long segmentVotes) {
 		this.totalVotes += segmentVotes;
-	}
-	
-	public boolean checkSum() {
-		return this.alignment != null && this.energy != null && this.intelligence != null && this.levelHeadedness != null && this.name != null && this.speakAbility != null && this.wit != null;
 	}
 
 	public void setName(String name) {
@@ -109,4 +71,39 @@ public class Candidate {
 		this.speakAbility = speakAbility;
 	}
 
+	public boolean checkNull() {
+		if (name.equals("")) {
+			return false;
+		} else if (alignment.equals("")) {
+			return false;
+		} else if (energy == 0) {
+			return false;
+		} else if (intelligence == 0) {
+			return false;
+		} else if (wit == 0) {
+			return false;
+		} else if (levelHeadedness == 0) {
+			return false;
+		} else return speakAbility != 0;
+	}
+
+	public Integer getEnergy() {
+		return energy;
+	}
+
+	public Integer getIntelligence() {
+		return intelligence;
+	}
+
+	public Integer getWit() {
+		return wit;
+	}
+
+	public Integer getLevelHeadedness() {
+		return levelHeadedness;
+	}
+
+	public Integer getSpeakAbility() {
+		return speakAbility;
+	}
 }
