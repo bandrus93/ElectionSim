@@ -5,10 +5,11 @@ import java.text.NumberFormat;
 
 public class DecimalInput extends ControlInput {
     private final JLabel label;
-    private final JFormattedTextField inputField = new JFormattedTextField(NumberFormat.getNumberInstance());
+    private final JFormattedTextField inputField;
 
     public DecimalInput(String label) {
         this.label = new JLabel(label);
+        this.inputField = new JFormattedTextField(NumberFormat.getNumberInstance());
         inputField.setColumns(8);
     }
 

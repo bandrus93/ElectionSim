@@ -5,10 +5,11 @@ import java.text.NumberFormat;
 
 public class NumeralInput extends ControlInput {
     private final JLabel label;
-    private final JFormattedTextField inputField = new JFormattedTextField(NumberFormat.getIntegerInstance());
+    private final JFormattedTextField inputField;
 
     public NumeralInput(String label) {
         this.label = new JLabel(label);
+        this.inputField = new JFormattedTextField(NumberFormat.getIntegerInstance());
         inputField.setColumns(3);
     }
 

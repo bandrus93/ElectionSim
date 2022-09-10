@@ -195,13 +195,11 @@ public class CandidateControllerBuilder implements ControllerBuilder {
             return addCandidate.getInputField();
         }
 
-        //private int eventCounter = 0;
-
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             Component trigger = (Component) evt.getSource();
-//            System.out.println(trigger.toString());
-//            System.out.println(nameField.getInputField().toString());
+            System.out.println(trigger.toString());
+            System.out.println(nameField.getValue());
             if (trigger.equals(nameField.getInputField()) && !nameField.getValue().equals("")) {
                 candidate.setName(nameField.getValue());
             } else if (trigger.equals(energyField.getInputField()) && !energyField.getValue().equals("")) {
@@ -215,19 +213,16 @@ public class CandidateControllerBuilder implements ControllerBuilder {
             } else if (trigger.equals(speakAbilityField.getInputField()) && !speakAbilityField.getValue().equals("")) {
                 candidate.setSpeakAbility(Integer.parseInt(speakAbilityField.getValue()));
             }
-//            System.out.println(this.getCandidate().checkNull());
-//            System.out.println("Name: " + this.getCandidate().getName()
-//                    + "\nAlignment: " + this.getCandidate().getAlignment()
-//                    + "\nEnergy: " + this.getCandidate().getEnergy()
-//                    + "\nIntelligence: " + this.getCandidate().getIntelligence()
-//                    + "\nWit: " + this.getCandidate().getWit()
-//                    + "\nLevel Headedness: " + this.getCandidate().getLevelHeadedness()
-//                    + "\nSpeak Ability: " + this.getCandidate().getSpeakAbility());
-            //System.out.println(eventCounter);
+            System.out.println("Name: " + this.getCandidate().getName()
+                    + "\nAlignment: " + this.getCandidate().getAlignment()
+                    + "\nEnergy: " + this.getCandidate().getEnergy()
+                    + "\nIntelligence: " + this.getCandidate().getIntelligence()
+                    + "\nWit: " + this.getCandidate().getWit()
+                    + "\nLevel Headedness: " + this.getCandidate().getLevelHeadedness()
+                    + "\nSpeak Ability: " + this.getCandidate().getSpeakAbility());
             if (this.getCandidate().checkNull()) {
                 this.getAddInput().getInputField().setEnabled(true);
             }
-            //eventCounter++;
         }
     }
 }

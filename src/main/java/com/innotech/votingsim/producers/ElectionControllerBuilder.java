@@ -43,7 +43,7 @@ public class ElectionControllerBuilder implements ControllerBuilder {
     }
 
     @Override
-    public Controller build() {
+    public ElectionController build() {
         return electionController;
     }
 

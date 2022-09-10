@@ -4,10 +4,11 @@ import javax.swing.*;
 
 public class TextInput extends ControlInput {
     private final JLabel label;
-    private final JFormattedTextField inputField = new JFormattedTextField();
+    private final JFormattedTextField inputField;
 
     public TextInput(String label) {
         this.label = new JLabel(label);
+        this.inputField = new JFormattedTextField();
         inputField.setColumns(30);
     }
 
@@ -21,7 +22,7 @@ public class TextInput extends ControlInput {
 
     @Override
     public String getValue() {
-        return inputField.getValue() != null ? inputField.getValue().toString() : "";
+        return inputField.getText() == null ? "" : inputField.getText();
     }
 
 }
