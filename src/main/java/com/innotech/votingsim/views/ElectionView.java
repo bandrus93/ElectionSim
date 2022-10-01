@@ -19,8 +19,16 @@ public class ElectionView extends ViewElement {
         return contentPane;
     }
 
+    public JPanel getTypeLine() {
+        return typeLine;
+    }
+
     public void setTypeLine(JPanel typeLine) {
         this.typeLine = typeLine;
+    }
+
+    public JPanel getCommandLine() {
+        return commandLine;
     }
 
     public void setCommandLine(JPanel commandLine) {

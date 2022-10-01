@@ -4,14 +4,25 @@ import com.innotech.votingsim.inputs.ActionInput;
 import com.innotech.votingsim.inputs.SpinnerInput;
 import com.innotech.votingsim.views.ElectionView;
 import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class ElectionControllerBuilderTests {
-    ElectionControllerBuilder testBuilder;
+    private ElectionControllerBuilder testBuilder;
+    private ElectionView testView;
+    private SpinnerInput testSelector;
+    private ActionInput testButton;
+
+    @BeforeSuite
+    public void setupTestConstants() {
+        testSelector = new SpinnerInput("Election Type:", Arrays.asList("a","b","c").toArray());
+        testButton = new ActionInput("Run Election");
+    }
 
     @BeforeGroups({"inputTests"})
     public void setupInputTests() {
@@ -21,29 +32,39 @@ public class ElectionControllerBuilderTests {
     @BeforeGroups({"viewTests"})
     public void setupViewTests() {
         testBuilder = (ElectionControllerBuilder) new ElectionControllerBuilder()
-                .addInput(new SpinnerInput("Election Type:", Arrays.asList("a","b","c").toArray()))
-                .addInput(new ActionInput("Run Election"));
+                .addInput(testSelector)
+                .addInput(testButton);
+        testView = new ElectionView();
     }
 
     @Test(groups = {"inputTests"})
     public void addInputShouldSetTheElectionSelectorInputGivenASpinnerInput() {
-        SpinnerInput testSelector = new SpinnerInput("Election Type:", Arrays.asList("a","b","c").toArray());
         testBuilder.addInput(testSelector);
         assertEquals(testBuilder.build().getElectionSelector(), testSelector);
     }
 
     @Test(groups = {"inputTests"})
     public void addInputShouldSetTheRunElectionButtonGivenAnActionInput() {
-        ActionInput testButton = new ActionInput("Run Election");
         testBuilder.addInput(testButton);
         assertEquals(testBuilder.build().getRunInput(), testButton);
     }
 
     @Test(groups = {"viewTests"})
     public void addViewShouldAddAnElectionViewComponentToTheElectionControllerGivenAViewElement() {
-        ElectionView testView = new ElectionView();
         testBuilder.addView(testView);
         assertEquals(testBuilder.build().getElectionView(), testView);
+    }
+
+    @Test(groups = {"viewTests"})
+    public void addViewShouldSetTheElectionViewTypeLineGivenAViewElement() {
+        testBuilder.addView(testView);
+        assertNotNull(testView.getTypeLine());
+    }
+
+    @Test(groups = {"viewTests"})
+    public void addViewShouldSetTheElectionViewCommandLineGivenAViewElement() {
+        testBuilder.addView(testView);
+        assertNotNull(testView.getCommandLine());
     }
 
 }
