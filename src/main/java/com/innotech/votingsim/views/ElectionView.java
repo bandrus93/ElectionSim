@@ -68,8 +68,8 @@ public class ElectionView extends ViewElement {
             rank--;
         }
         for(int i = resultList.size() - 1; i >= 0; i--) {
-            Double candVotes = Double.parseDouble(resultData[i][1].toString());
-            double percent = (candVotes / votesCast) * 100;
+            Double candidateVotes = Double.parseDouble(resultData[i][1].toString());
+            double percent = (candidateVotes / votesCast) * 100;
             resultData[i][2] = percent + "%";
         }
         JTable resultTable = new JTable(resultData, resultHeaders);

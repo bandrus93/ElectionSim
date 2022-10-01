@@ -15,41 +15,39 @@ import java.util.Arrays;
 
 public class CandidateControllerBuilder implements ControllerBuilder {
     private final CandidateController candidateController = new CandidateController();
-    private int inputCounter = 0;
 
     @Override
     public ControllerBuilder addInput(ControlInput inputControl) {
-        switch (inputCounter) {
-            case 0:
+        switch (inputControl.getLabel().getText()) {
+            case "Name:":
                 candidateController.setNameField((TextInput) inputControl);
                 break;
-            case 1:
+            case "Alignment:":
                 candidateController.setAllySelector((SpinnerInput) inputControl);
                 break;
-            case 2:
+            case "Energy:":
                 candidateController.setEnergyField((NumeralInput) inputControl);
                 break;
-            case 3:
+            case "Intelligence:":
                 candidateController.setIntelligenceField((NumeralInput) inputControl);
                 break;
-            case 4:
+            case "Wit:":
                 candidateController.setWitField((NumeralInput) inputControl);
                 break;
-            case 5:
+            case "Level Headedness:":
                 candidateController.setLevelHeadField((NumeralInput) inputControl);
                 break;
-            case 6:
+            case "Speaking Ability:":
                 candidateController.setSpeakAbilityField((NumeralInput) inputControl);
                 break;
-            case 7:
+            case "Add Candidate":
                 candidateController.setAddInput((ActionInput) inputControl);
                 break;
-            case 8:
+            case "Clear All":
                 candidateController.setClearAllInput((ActionInput) inputControl);
             default:
-                System.out.println("max input exceeded");
+                System.out.println("CandidateController input overflow");
         }
-        inputCounter++;
         return this;
     }
 
@@ -198,8 +196,6 @@ public class CandidateControllerBuilder implements ControllerBuilder {
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             Component trigger = (Component) evt.getSource();
-            System.out.println(trigger.toString());
-            System.out.println(nameField.getValue());
             if (trigger.equals(nameField.getInputField()) && !nameField.getValue().equals("")) {
                 candidate.setName(nameField.getValue());
             } else if (trigger.equals(energyField.getInputField()) && !energyField.getValue().equals("")) {
@@ -213,13 +209,6 @@ public class CandidateControllerBuilder implements ControllerBuilder {
             } else if (trigger.equals(speakAbilityField.getInputField()) && !speakAbilityField.getValue().equals("")) {
                 candidate.setSpeakAbility(Integer.parseInt(speakAbilityField.getValue()));
             }
-            System.out.println("Name: " + this.getCandidate().getName()
-                    + "\nAlignment: " + this.getCandidate().getAlignment()
-                    + "\nEnergy: " + this.getCandidate().getEnergy()
-                    + "\nIntelligence: " + this.getCandidate().getIntelligence()
-                    + "\nWit: " + this.getCandidate().getWit()
-                    + "\nLevel Headedness: " + this.getCandidate().getLevelHeadedness()
-                    + "\nSpeak Ability: " + this.getCandidate().getSpeakAbility());
             if (this.getCandidate().checkNull()) {
                 this.getAddInput().getInputField().setEnabled(true);
             }

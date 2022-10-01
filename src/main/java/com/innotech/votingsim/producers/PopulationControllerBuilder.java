@@ -15,34 +15,32 @@ import java.beans.PropertyChangeListener;
 
 public class PopulationControllerBuilder implements ControllerBuilder {
     private final PopulationController populationController = new PopulationController();
-    private int inputCounter = 0;
 
     @Override
     public PopulationControllerBuilder addInput(ControlInput inputControl) {
         DecimalInput populationControl = (DecimalInput) inputControl;
-        switch (inputCounter) {
-            case 0:
+        switch (inputControl.getLabel().getText()) {
+            case "Total number of registered voters:":
                 populationController.setVoterField(populationControl);
                 break;
-            case 1:
+            case "Percentage of radical left voters:":
                 populationController.setRadLeftField(populationControl);
                 break;
-            case 2:
+            case "Percentage of moderate left voters:":
                 populationController.setModLeftField(populationControl);
                 break;
-            case 3:
+            case "Percentage of centrist voters:":
                 populationController.setCenterField(populationControl);
                 break;
-            case 4:
+            case "Percentage of moderate right voters:":
                 populationController.setModRightField(populationControl);
                 break;
-            case 5:
+            case "Percentage of radical right voters:":
                 populationController.setRadRightField(populationControl);
                 break;
             default:
-                System.out.println("max input exceeded");
+                System.out.println("PopulationController input overflow");
         }
-        inputCounter++;
         return this;
     }
 

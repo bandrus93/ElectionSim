@@ -18,16 +18,14 @@ import java.util.List;
 
 public class ElectionControllerBuilder implements ControllerBuilder {
     private final ElectionController electionController = new ElectionController();
-    private int inputCounter = 0;
 
     @Override
     public ControllerBuilder addInput(ControlInput inputControl) {
-        if (inputCounter == 0) {
-            this.electionController.setElectionSelector((SpinnerInput) inputControl);
+        if (inputControl.getLabel().getText().equals("Election Type:")) {
+            electionController.setElectionSelector((SpinnerInput) inputControl);
         } else {
-            this.electionController.setElectionRunner((ActionInput) inputControl);
+            electionController.setElectionRunner((ActionInput) inputControl);
         }
-        inputCounter++;
         return this;
     }
 
