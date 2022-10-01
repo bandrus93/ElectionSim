@@ -2,6 +2,7 @@ package com.innotech.votingsim.producers;
 
 import com.innotech.votingsim.inputs.ActionInput;
 import com.innotech.votingsim.inputs.SpinnerInput;
+import com.innotech.votingsim.views.ElectionView;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,13 @@ public class ElectionControllerBuilderTests {
     @BeforeGroups({"inputTests"})
     public void setupInputTests() {
         testBuilder = new ElectionControllerBuilder();
+    }
+
+    @BeforeGroups({"viewTests"})
+    public void setupViewTests() {
+        testBuilder = (ElectionControllerBuilder) new ElectionControllerBuilder()
+                .addInput(new SpinnerInput("Election Type:", Arrays.asList("a","b","c").toArray()))
+                .addInput(new ActionInput("Run Election"));
     }
 
     @Test(groups = {"inputTests"})
@@ -31,6 +39,11 @@ public class ElectionControllerBuilderTests {
         assertEquals(testBuilder.build().getRunInput(), testButton);
     }
 
-    
+    @Test(groups = {"viewTests"})
+    public void addViewShouldAddAnElectionViewComponentToTheElectionControllerGivenAViewElement() {
+        ElectionView testView = new ElectionView();
+        testBuilder.addView(testView);
+        assertEquals(testBuilder.build().getElectionView(), testView);
+    }
 
 }
