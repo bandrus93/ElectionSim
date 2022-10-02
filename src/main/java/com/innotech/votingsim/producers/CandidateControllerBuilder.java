@@ -70,7 +70,7 @@ public class CandidateControllerBuilder implements ControllerBuilder {
     }
 
     @Override
-    public Controller build() {
+    public CandidateController build() {
         return candidateController;
     }
 
@@ -113,6 +113,38 @@ public class CandidateControllerBuilder implements ControllerBuilder {
 
         public void setSpeakAbilityField(NumeralInput speakAbilityField) {
             this.speakAbilityField = speakAbilityField;
+        }
+
+        public NumeralInput getEnergyField() {
+            return energyField;
+        }
+
+        public NumeralInput getIntelligenceField() {
+            return intelligenceField;
+        }
+
+        public NumeralInput getWitField() {
+            return witField;
+        }
+
+        public NumeralInput getLevelHeadField() {
+            return levelHeadField;
+        }
+
+        public NumeralInput getSpeakAbilityField() {
+            return speakAbilityField;
+        }
+
+        public TextInput getNameField() {
+            return nameField;
+        }
+
+        public ActionInput getAddCandidate() {
+            return addCandidate;
+        }
+
+        public ActionInput getClearAll() {
+            return clearAll;
         }
 
         public void setNameField(TextInput nameField) {
