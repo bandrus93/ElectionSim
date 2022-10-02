@@ -9,8 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
 
 public class ElectionControllerBuilderTests {
     private ElectionControllerBuilder testBuilder;
@@ -65,6 +64,12 @@ public class ElectionControllerBuilderTests {
     public void addViewShouldSetTheElectionViewCommandLineGivenAViewElement() {
         testBuilder.addView(testView);
         assertNotNull(testView.getCommandLine());
+    }
+
+    @Test(groups = {"viewTests"})
+    public void addViewShouldDisableRunElectionButtonGivenAViewElement() {
+        testBuilder.addView(testView);
+        assertFalse(testButton.getInputField().isEnabled());
     }
 
 }
