@@ -53,7 +53,7 @@ public class ElectionControllerBuilder implements ControllerBuilder {
         private ElectionView electionView;
 
         private ElectionController() {
-
+            
         }
 
         public Campaign getCampaign() {

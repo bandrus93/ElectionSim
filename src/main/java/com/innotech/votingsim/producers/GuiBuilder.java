@@ -56,7 +56,9 @@ public class GuiBuilder implements ControllerBuilder {
 	}
 
 	public Gui build() {
-		this.gui.electionController.setCampaign(new Campaign(this.gui.populationController.getDemographics()));
+		Campaign campaign = new Campaign(this.gui.populationController.getDemographics());
+		this.gui.electionController.setCampaign(campaign);
+		this.gui.electionController.setElectionMethod("Plurality");
 		return gui;
 	}
 
