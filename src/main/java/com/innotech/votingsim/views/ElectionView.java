@@ -84,6 +84,7 @@ public class ElectionView extends ViewElement {
         JScrollPane tablePane = new JScrollPane(resultTable);
         resultTable.setFillsViewportHeight(true);
         contentPane.add(tablePane, 3);
+        contentPane.validate();
     }
 
 }

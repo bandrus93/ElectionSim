@@ -10,7 +10,7 @@ public class ElectionControllerFactory extends ControllerFactory {
 
     public static ElectionControllerBuilder.ElectionController getInstance() {
         return (ElectionControllerBuilder.ElectionController) new ElectionControllerBuilder()
-                .addInput(new SpinnerInput("Election type:", Arrays.asList("Plurality","Instant Runoff","Approval").toArray()))
+                .addInput(new SpinnerInput("Election Type:", Arrays.asList("Plurality","Instant Runoff","Approval").toArray()))
                 .addInput(new ActionInput("Run Election"))
                 .addView(new ElectionView())
                 .build();
